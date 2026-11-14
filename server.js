@@ -54,8 +54,8 @@ const server = http.createServer(async (req, res) => {
 
       const tokenData = await tokenResponse.json();
 
-      if (!tokenResponse.ok || !tokenData?.data?.session_token) {
-        console.error("[session] LiveAvatar token request failed", { status: tokenResponse.status, message: tokenData?.message || tokenData?.detail || "No session_token in response" });
+      if (!tokenResponse.ok || !tokenData?.data?.session_token || !tokenData?.data?.session_id) {
+        console.error("[session] LiveAvatar token request failed", { status: tokenResponse.status, message: tokenData?.message || tokenData?.detail || "Missing session_token/session_id in response" });
         res.writeHead(tokenResponse.status || 502).end(JSON.stringify({
           error: "LiveAvatar token yaratilmadi.",
           details: tokenData?.message || tokenData?.detail || "API xatosi"
@@ -65,13 +65,16 @@ const server = http.createServer(async (req, res) => {
 
       console.info("[session] LiveAvatar token created; starting session");
       const sessionToken = tokenData.data.session_token;
+      const sessionId = tokenData.data.session_id;
 
       const startResponse = await fetch("https://api.liveavatar.com/v1/sessions/start", {
         method: "POST",
         headers: {
           "Authorization": `Bearer ${sessionToken}`,
+          "Content-Type": "application/json",
           "Accept": "application/json"
-        }
+        },
+        body: JSON.stringify({ session_id: sessionId })
       });
 
       const startData = await startResponse.json();
