@@ -30,7 +30,7 @@
     .order{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:start}.order-info{background:var(--navy);color:white;padding:28px;border-radius:20px}.order-info h2{font-size:29px;line-height:1.2}.order-info p{color:#cbd5e1}.contact-line{margin-top:18px;color:#bae6fd;font-weight:700}
     form{background:white;border:1px solid #e5eaf5;border-radius:20px;padding:25px;box-shadow:0 8px 24px #10234a08}
     label{display:block;font-size:13px;font-weight:800;margin:0 0 6px;color:#334155}input,select,textarea{width:100%;padding:12px 13px;border:1px solid #cbd5e1;border-radius:10px;font:inherit;margin-bottom:15px;background:#fff}textarea{min-height:100px;resize:vertical}input:focus,select:focus,textarea:focus{outline:2px solid #93c5fd;border-color:#3b82f6}
-    .form-note{font-size:12px;color:var(--muted);margin:8px 0 0}.submit{width:100%;background:var(--blue);color:white;border:0}
+    .form-note{font-size:12px;color:var(--muted);margin:8px 0 0}.submit{width:100%;background:var(--blue);color:white;border:0}\n    .chat-box{max-width:760px;margin:auto;background:white;border:1px solid #dbe4f0;border-radius:18px;padding:18px;box-shadow:0 8px 24px #10234a08}.chat-messages{height:320px;overflow:auto;display:flex;flex-direction:column;gap:10px;padding:4px 2px 14px}.chat-msg{max-width:85%;padding:11px 14px;border-radius:14px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px}.chat-msg.user{align-self:flex-end;background:#dbeafe;color:#172554}.chat-msg.bot{align-self:flex-start;background:#f1f5f9;color:#172033}.chat-form{display:flex;gap:8px;align-items:flex-end}.chat-form textarea{margin:0;min-height:48px;max-height:120px;flex:1}.chat-form button{white-space:nowrap}.chat-status{font-size:12px;color:var(--muted);min-height:20px;margin:8px 0 0}
     footer{background:#0b1227;color:#cbd5e1;padding:28px 0;text-align:center;font-size:13px}footer strong{color:white}
     @media(max-width:800px){.hero-grid,.order{grid-template-columns:1fr}.avatar-card{max-width:330px}.grid{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:1fr}.navlinks{display:none}}
     @media(max-width:520px){.hero{padding:58px 0}.grid{grid-template-columns:1fr}.nav{padding:13px 0}.brand{font-size:16px}section{padding:50px 0}}
@@ -78,7 +78,13 @@
   </div></section>
 
   <section id="ai-avatar" class="how"><div class="wrap">
-    <div class="section-head"><h2>Jonli AI yordamchi</h2><p>O‘zbek tilida savollaringizni ovozli bering — virtual yordamchi javob beradi.</p></div>
+    <div class="section-head"><h2>ChatGPT bilan suhbat</h2><p>Virtual xizmatlar bo‘yicha savollaringizni yozing — AI yordamchi javob beradi.</p></div>
+    <div class="chat-box">
+      <div id="chatMessages" class="chat-messages" role="log" aria-live="polite"><div class="chat-msg bot">Assalomu alaykum! Virtual Xizmatlar bo‘yicha qanday yordam kerak?</div></div>
+      <form id="chatForm" class="chat-form"><textarea id="chatInput" maxlength="4000" placeholder="Savolingizni yozing..." required aria-label="Savolingiz"></textarea><button id="chatSend" class="btn primary" type="submit">Yuborish</button></form>
+      <div id="chatStatus" class="chat-status">ChatGPT javoblari API ishlatilishiga qarab hisoblanadi.</div>
+    </div>
+    <details style="max-width:760px;margin:18px auto 0"><summary style="cursor:pointer;text-align:center;color:#475569">Ovozli avatar</summary>
     <div class="service" style="max-width:760px;margin:auto;text-align:center">
       <video id="liveAvatarVideo" autoplay playsinline controls style="display:none;width:100%;max-height:480px;background:#0b1227;border-radius:14px;margin:0 auto 16px"></video>
       <div id="avatarStatus" role="status" style="margin:12px 0;color:#475569">Suhbatni boshlash uchun tugmani bosing. Mikrofon ruxsatini so‘rashi mumkin.</div>
