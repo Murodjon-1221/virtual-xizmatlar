@@ -126,7 +126,10 @@ startBtn.addEventListener("click", async () => {
   try {
     const response = await fetch(API + "/api/session", { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" });
     const data = await response.json();
-    if (!response.ok || !data.session_token) throw new Error(data.error || data.details || "Sessiya tokeni olinmadi");
+    if (!response.ok || !data.session_token) {
+      const reason = data.details || data.message || data.error || "Sessiya tokeni olinmadi";
+      throw new Error(String(reason));
+    }
     session = new LiveAvatarSession(data.session_token, { voiceChat: {}, autoKeepAlive: true });
     session.on("session.stream_ready", () => {
       session.attach(video);
