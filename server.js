@@ -23,6 +23,7 @@ const server = http.createServer(async (req, res) => {
   }
 
   if (req.method === "POST" && req.url === "/api/session") {
+    console.info("[session] /api/session request received");
     if (!API_KEY || !AVATAR_ID || !VOICE_ID || !CONTEXT_ID) {
       res.writeHead(503).end(JSON.stringify({
         error: "LiveAvatar sozlamalari to'liq kiritilmagan."
@@ -54,6 +55,7 @@ const server = http.createServer(async (req, res) => {
       const tokenData = await tokenResponse.json();
 
       if (!tokenResponse.ok || !tokenData?.data?.session_token) {
+        console.error("[session] LiveAvatar token request failed", { status: tokenResponse.status, message: tokenData?.message || tokenData?.detail || "No session_token in response" });
         res.writeHead(tokenResponse.status || 502).end(JSON.stringify({
           error: "LiveAvatar token yaratilmadi.",
           details: tokenData?.message || tokenData?.detail || "API xatosi"
@@ -61,6 +63,7 @@ const server = http.createServer(async (req, res) => {
         return;
       }
 
+      console.info("[session] LiveAvatar token created; starting session");
       const sessionToken = tokenData.data.session_token;
 
       const startResponse = await fetch("https://api.liveavatar.com/v1/sessions/start", {
@@ -76,6 +79,7 @@ const server = http.createServer(async (req, res) => {
       const startData = await startResponse.json();
 
       if (!startResponse.ok || !startData?.data?.livekit_url || !startData?.data?.livekit_client_token) {
+        console.error("[session] LiveAvatar session start failed", { status: startResponse.status, message: startData?.message || startData?.detail || "Missing LiveKit connection fields" });
         res.writeHead(startResponse.status || 502).end(JSON.stringify({
           error: "LiveAvatar sessiyasi ishga tushmadi.",
           details: startData?.message || startData?.detail || "Start xatosi"
@@ -83,6 +87,7 @@ const server = http.createServer(async (req, res) => {
         return;
       }
 
+      console.info("[session] LiveAvatar session started successfully");
       res.writeHead(200).end(JSON.stringify({
         session_id: startData.data.session_id,
         livekit_url: startData.data.livekit_url,
@@ -91,6 +96,7 @@ const server = http.createServer(async (req, res) => {
         max_session_duration: startData.data.max_session_duration
       }));
     } catch (error) {
+      console.error("[session] Unexpected backend error", { message: error?.message || "Unknown error" });
       res.writeHead(500).end(JSON.stringify({
         error: "Server xatosi",
         details: error.message
