@@ -70,10 +70,8 @@ const server = http.createServer(async (req, res) => {
         method: "POST",
         headers: {
           "Authorization": `Bearer ${sessionToken}`,
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ session_id: tokenData.data.session_id })
+          "Accept": "application/json"
+        }
       });
 
       const startData = await startResponse.json();
