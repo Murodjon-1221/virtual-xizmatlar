@@ -119,7 +119,7 @@ document.getElementById('orderForm').addEventListener('submit',function(e){
   window.open('https://t.me/Tatu0444?text='+msg,'_blank','noopener');
 });
 </script>
-<script type="module">
+<script>(()=>{const f=document.getElementById('chatForm'),i=document.getElementById('chatInput'),m=document.getElementById('chatMessages'),s=document.getElementById('chatStatus'),b=document.getElementById('chatSend');if(!f||!i||!m||!s||!b)return;const h=[];function show(t,c){const d=document.createElement('div');d.className='chat-msg '+c;d.textContent=t;m.appendChild(d);m.scrollTop=m.scrollHeight;}f.addEventListener('submit',async e=>{e.preventDefault();const t=i.value.trim();if(!t)return;show(t,'user');h.push({role:'user',content:t});i.value='';b.disabled=true;s.textContent='Javob tayyorlanmoqda…';try{const r=await fetch('https://virtual-xizmatlar-backend.onrender.com/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:h.slice(-12)})});const d=await r.json();if(!r.ok)throw Error(d.error||d.message||'Server xatosi');const a=d.reply||d.output_text||d.message||'Javob olinmadi';show(a,'bot');h.push({role:'assistant',content:a});s.textContent='Tayyor';}catch(x){s.textContent='Xatolik: '+x.message;}finally{b.disabled=false;i.focus();}});})();</script><script type="module">
 import { LiveAvatarSession } from "https://esm.sh/@heygen/liveavatar-web-sdk@0.0.20";
 const API = "https://virtual-xizmatlar-backend.onrender.com";
 const startBtn = document.getElementById("avatarStart");
