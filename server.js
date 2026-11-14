@@ -69,7 +69,8 @@ const server = http.createServer(async (req, res) => {
           "Authorization": `Bearer ${sessionToken}`,
           "Accept": "application/json",
           "Content-Type": "application/json"
-        }
+        },
+        body: JSON.stringify({ session_id: tokenData.data.session_id })
       });
 
       const startData = await startResponse.json();
