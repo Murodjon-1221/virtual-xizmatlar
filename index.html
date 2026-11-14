@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="VIRTUAL XIZMATLAR — hujjatlar, kompyuter ishlari, taqdimotlar va onlayn xizmatlar.">
+  <title>VIRTUAL XIZMATLAR</title>
+  <style>
+    :root{--navy:#101a35;--blue:#2563eb;--cyan:#38bdf8;--ink:#172033;--muted:#64748b;--bg:#f5f8ff;--white:#fff}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+    a{color:inherit;text-decoration:none}.wrap{width:min(1120px,92%);margin:auto}
+    header{background:rgba(16,26,53,.96);color:white;position:sticky;top:0;z-index:10;border-bottom:1px solid #ffffff20}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:15px 0}.brand{font-weight:900;letter-spacing:.7px;font-size:19px}.brand span{color:var(--cyan)}
+    .navlinks{display:flex;gap:22px;font-size:14px;color:#dbeafe}.navlinks a:hover{color:var(--cyan)}
+    .hero{background:radial-gradient(circle at 80% 20%,#2563eb88,transparent 30%),linear-gradient(125deg,#101a35,#142b59 65%,#075985);color:white;padding:82px 0 76px;overflow:hidden}
+    .hero-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:35px;align-items:center}.eyebrow{color:#7dd3fc;font-weight:700;text-transform:uppercase;letter-spacing:2px;font-size:12px}
+    h1{font-size:clamp(36px,6vw,62px);line-height:1.08;margin:14px 0 18px;letter-spacing:-1.5px}.hero p{font-size:18px;color:#dbeafe;max-width:650px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 20px;border-radius:12px;font-weight:800;border:1px solid transparent;cursor:pointer}
+    .primary{background:var(--cyan);color:#082f49}.secondary{border-color:#ffffff70;color:white}.btn:hover{transform:translateY(-1px)}
+    .avatar-card{background:#ffffff12;border:1px solid #ffffff30;border-radius:24px;padding:25px;text-align:center;backdrop-filter:blur(8px)}
+    .avatar{width:142px;height:142px;border-radius:50%;margin:0 auto 16px;background:linear-gradient(145deg,#38bdf8,#1d4ed8);display:grid;place-items:center;font-size:55px;border:5px solid #ffffff55}
+    .avatar-card strong{display:block;font-size:19px}.avatar-card small{color:#bfdbfe}
+    section{padding:66px 0}.section-head{text-align:center;margin-bottom:34px}.section-head h2{font-size:clamp(27px,4vw,38px);margin:0 0 8px;color:var(--navy)}.section-head p{color:var(--muted);margin:0}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.service{background:white;border:1px solid #e5eaf5;border-radius:17px;padding:22px;box-shadow:0 8px 24px #10234a08}
+    .service .ico{font-size:25px}.service h3{margin:10px 0 5px;font-size:17px;color:var(--navy)}.service p{margin:0;color:var(--muted);font-size:14px}
+    .price-note{margin:24px auto 0;max-width:760px;background:#eaf3ff;border:1px solid #cfe2ff;padding:16px 18px;border-radius:14px;color:#23436d;text-align:center}
+    .how{background:#edf4ff}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.step{background:white;border-radius:16px;padding:22px}.num{width:34px;height:34px;border-radius:10px;background:#dbeafe;color:#1d4ed8;display:grid;place-items:center;font-weight:900}
+    .step h3{margin:12px 0 5px}.step p{margin:0;color:var(--muted);font-size:14px}
+    .order{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px;align-items:start}.order-info{background:var(--navy);color:white;padding:28px;border-radius:20px}.order-info h2{font-size:29px;line-height:1.2}.order-info p{color:#cbd5e1}.contact-line{margin-top:18px;color:#bae6fd;font-weight:700}
+    form{background:white;border:1px solid #e5eaf5;border-radius:20px;padding:25px;box-shadow:0 8px 24px #10234a08}
+    label{display:block;font-size:13px;font-weight:800;margin:0 0 6px;color:#334155}input,select,textarea{width:100%;padding:12px 13px;border:1px solid #cbd5e1;border-radius:10px;font:inherit;margin-bottom:15px;background:#fff}textarea{min-height:100px;resize:vertical}input:focus,select:focus,textarea:focus{outline:2px solid #93c5fd;border-color:#3b82f6}
+    .form-note{font-size:12px;color:var(--muted);margin:8px 0 0}.submit{width:100%;background:var(--blue);color:white;border:0}
+    footer{background:#0b1227;color:#cbd5e1;padding:28px 0;text-align:center;font-size:13px}footer strong{color:white}
+    @media(max-width:800px){.hero-grid,.order{grid-template-columns:1fr}.avatar-card{max-width:330px}.grid{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:1fr}.navlinks{display:none}}
+    @media(max-width:520px){.hero{padding:58px 0}.grid{grid-template-columns:1fr}.nav{padding:13px 0}.brand{font-size:16px}section{padding:50px 0}}
+  </style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="#">VIRTUAL <span>XIZMATLAR</span></a>
+  <nav class="navlinks"><a href="#services">Xizmatlar</a><a href="#how">Qanday ishlaydi</a><a href="#order">Buyurtma</a><a href="#ai-avatar">AI avatar</a></nav>
+  <a class="btn primary" href="https://t.me/MurodjonMurodullayev1_bot" target="_blank" rel="noopener">Botga yozish</a>
+</div></header>
+<main>
+  <div class="hero"><div class="wrap hero-grid">
+    <div><div class="eyebrow">Tezkor • Qulay • Ishonchli</div>
+      <h1>Raqamli va kompyuter xizmatlari — bir joyda</h1>
+      <p>Hujjatlar, taqdimotlar, arizalar, kompyuter sozlamalari va boshqa virtual xizmatlar. Vazifangizni yuboring — siz bilan bog‘lanib, narx va muddatni kelishamiz.</p>
+      <div class="actions"><a class="btn primary" href="#order">Buyurtma berish</a><a class="btn secondary" href="#services">Xizmatlarni ko‘rish</a></div>
+    </div>
+    <div class="avatar-card"><div class="avatar">VX</div><strong>VIRTUAL XIZMATLAR</strong><small>Onlayn yordamchi</small><p style="font-size:13px;color:#dbeafe;margin-bottom:0">O‘zbek tilida murojaat qiling</p></div>
+  </div></div>
+
+  <section id="services"><div class="wrap">
+    <div class="section-head"><h2>Xizmatlarimiz</h2><p>Kerakli xizmatni tanlang yoki o‘z vazifangizni yozib yuboring.</p></div>
+    <div class="grid">
+      <article class="service"><div class="ico">📄</div><h3>Word, Excel va PowerPoint</h3><p>Matn terish, jadval, hujjatlarni tahrirlash va taqdimot tayyorlash.</p></article>
+      <article class="service"><div class="ico">🖨️</div><h3>Chop etish va skanerlash</h3><p>Nusxa ko‘chirish, skaner va rangli chop etish xizmatlari.</p></article>
+      <article class="service"><div class="ico">🎓</div><h3>Ta’lim hujjatlari</h3><p>OTMga ariza, o‘qish joyidan ma’lumot, attestatsiya va milliy sertifikat arizalari.</p></article>
+      <article class="service"><div class="ico">📝</div><h3>Matn va taqdimot ishlari</h3><p>Slayd, mustaqil ish, kurs ishi, tavsifnoma, ma’lumotnoma va obyektivka.</p></article>
+      <article class="service"><div class="ico">🚗</div><h3>Avtomobil xizmatlari</h3><p>Sug‘urta, ishonchnoma, tonirovka ruxsatnomasi va taksi litsenziyasi.</p></article>
+      <article class="service"><div class="ico">💻</div><h3>Kompyuter sozlash</h3><p>Windows o‘rnatish, drayverlar, dasturlar, elektron doska va lokal tarmoq.</p></article>
+      <article class="service"><div class="ico">🌐</div><h3>Tarmoq va internet</h3><p>Internetni sozlash, lokal tarmoq va kompyuterlarni masofadan boshqarish.</p></article>
+      <article class="service"><div class="ico">📑</div><h3>Ma’lumot va arizalar</h3><p>STIR, JSHSHIR bo‘yicha ma’lumot olish va tegishli arizalarni rasmiylashtirishga ko‘mak.</p></article>
+      <article class="service"><div class="ico">✨</div><h3>Boshqa kompyuter ishlari</h3><p>Ommalashtirish ishlari, taklifnomalar va kompyuterda bajariladigan boshqa vazifalar.</p></article>
+    </div>
+    <div class="price-note"><strong>Narxlar:</strong> avtomobil sug‘urtasi — 160 000 so‘m; slaydlar — mavzu va hajmiga qarab 30 000–50 000 so‘m. Boshqa xizmatlar narxi ish tafsilotiga qarab kelishiladi.</div>
+  </div></section>
+
+  <section class="how" id="how"><div class="wrap">
+    <div class="section-head"><h2>Buyurtma berish oson</h2><p>Uch qadamda murojaatingizni yuboring.</p></div>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><h3>Xizmatni tanlang</h3><p>Saytdagi buyurtma formasida kerakli xizmatni belgilang.</p></div>
+      <div class="step"><div class="num">2</div><h3>Vazifani tushuntiring</h3><p>Kerakli ma’lumot, hajm va muddatni yozing.</p></div>
+      <div class="step"><div class="num">3</div><h3>Javobni kuting</h3><p>Buyurtmangiz Telegram orqali yuboriladi va narx hamda muddat kelishiladi.</p></div>
+    </div>
+  </div></section>
+
+  <section id="ai-avatar" class="how"><div class="wrap">
+    <div class="section-head"><h2>Jonli AI yordamchi</h2><p>O‘zbek tilida savollaringizga ovozli javob beradigan virtual yordamchi.</p></div>
+    <div class="service" style="max-width:760px;margin:auto;text-align:center">
+      <div class="ico">🎙️</div><h3>AI avatar tez orada ulanadi</h3>
+      <p>Jonli avatarni ishga tushirish uchun LiveAvatar hisobidagi integratsiya kodi va sozlamalari kerak. Hozircha xizmat saytda tayyorlanmoqda.</p>
+      <p style="margin-top:16px"><a class="btn primary" style="background:#2563eb;color:white" href="https://www.liveavatar.com/" target="_blank" rel="noopener">LiveAvatar hisobini ochish</a></p>
+    </div>
+  </div></section>
+
+  <section id="order"><div class="wrap order">
+    <div class="order-info"><div class="eyebrow">Murojaat qoldiring</div><h2>Buyurtmangizni yuboring</h2><p>Ma’lumotlaringizni kiriting. Tugmani bosganingizda Telegram orqali tayyor xabar ochiladi. Xabarni yuborishni o‘zingiz tasdiqlaysiz.</p><div class="contact-line">Telegram: @Tatu0444</div><div class="contact-line">Bot: @MurodjonMurodullayev1_bot</div></div>
+    <form id="orderForm">
+      <label for="name">Ismingiz</label><input id="name" name="name" placeholder="Ismingiz" required>
+      <label for="phone">Telefon raqamingiz</label><input id="phone" name="phone" type="tel" placeholder="+998 __ ___ __ __" required>
+      <label for="service">Kerakli xizmat</label><select id="service" name="service" required>
+        <option value="">Xizmatni tanlang</option><option>Word / Excel / PowerPoint</option><option>Chop etish / skanerlash</option><option>Slayd / mustaqil ish / kurs ishi</option><option>Ta’lim hujjatlari va arizalar</option><option>Avtomobil xizmatlari</option><option>Windows va kompyuter sozlash</option><option>Internet / lokal tarmoq</option><option>Boshqa xizmat</option>
+      </select>
+      <label for="details">Buyurtma tafsilotlari</label><textarea id="details" name="details" placeholder="Nima qilish kerak? Hajmi va muddati qanday?" required></textarea>
+      <button class="btn submit" type="submit">Telegram orqali buyurtma yuborish</button>
+      <p class="form-note">Hozircha forma buyurtmani Telegram xabari ko‘rinishida tayyorlaydi; avtomatik serverga saqlash va barcha ijtimoiy tarmoqlar bilan integratsiya hali ulanmagan.</p>
+    </form>
+  </div></section>
+</main>
+<footer><div class="wrap"><strong>VIRTUAL XIZMATLAR</strong><br>Raqamli xizmatlar va kompyuter yordami<br>© 2026 VIRTUAL XIZMATLAR</div></footer>
+<script>
+document.getElementById('orderForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const f=new FormData(this);
+  const msg=`VIRTUAL XIZMATLAR — yangi buyurtma%0AIsm: ${encodeURIComponent(f.get('name'))}%0ATelefon: ${encodeURIComponent(f.get('phone'))}%0AXizmat: ${encodeURIComponent(f.get('service'))}%0ATafsilot: ${encodeURIComponent(f.get('details'))}`;
+  window.open('https://t.me/Tatu0444?text='+msg,'_blank','noopener');
+});
+</script>
+</body></html>
