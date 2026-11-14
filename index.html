@@ -77,11 +77,15 @@
   </div></section>
 
   <section id="ai-avatar" class="how"><div class="wrap">
-    <div class="section-head"><h2>Jonli AI yordamchi</h2><p>O‘zbek tilida savollaringizga ovozli javob beradigan virtual yordamchi.</p></div>
+    <div class="section-head"><h2>Jonli AI yordamchi</h2><p>O‘zbek tilida savollaringizni ovozli bering — virtual yordamchi javob beradi.</p></div>
     <div class="service" style="max-width:760px;margin:auto;text-align:center">
-      <div class="ico">🎙️</div><h3>AI avatar tez orada ulanadi</h3>
-      <p>Jonli avatarni ishga tushirish uchun LiveAvatar hisobidagi integratsiya kodi va sozlamalari kerak. Hozircha xizmat saytda tayyorlanmoqda.</p>
-      <p style="margin-top:16px"><a class="btn primary" style="background:#2563eb;color:white" href="https://www.liveavatar.com/" target="_blank" rel="noopener">LiveAvatar hisobini ochish</a></p>
+      <video id="liveAvatarVideo" autoplay playsinline controls style="display:none;width:100%;max-height:480px;background:#0b1227;border-radius:14px;margin:0 auto 16px"></video>
+      <div id="avatarStatus" role="status" style="margin:12px 0;color:#475569">Suhbatni boshlash uchun tugmani bosing. Mikrofon ruxsatini so‘rashi mumkin.</div>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <button id="avatarStart" class="btn primary" type="button" style="background:#2563eb;color:white">🎙️ Suhbatni boshlash</button>
+        <button id="avatarStop" class="btn" type="button" style="background:#e2e8f0;color:#172033" disabled>To‘xtatish</button>
+      </div>
+      <p class="form-note">Ovozli suhbat uchun mikrofon ruxsatini bering. Sessiya tugagach “To‘xtatish” tugmasini bosing.</p>
     </div>
   </div></section>
 
@@ -106,6 +110,44 @@ document.getElementById('orderForm').addEventListener('submit',function(e){
   const f=new FormData(this);
   const msg=`VIRTUAL XIZMATLAR — yangi buyurtma%0AIsm: ${encodeURIComponent(f.get('name'))}%0ATelefon: ${encodeURIComponent(f.get('phone'))}%0AXizmat: ${encodeURIComponent(f.get('service'))}%0ATafsilot: ${encodeURIComponent(f.get('details'))}`;
   window.open('https://t.me/Tatu0444?text='+msg,'_blank','noopener');
+});
+</script>
+<script type="module">
+import { LiveAvatarSession } from "https://esm.sh/@heygen/liveavatar-web-sdk@0.0.20";
+const API = "https://virtual-xizmatlar-backend.onrender.com";
+const startBtn = document.getElementById("avatarStart");
+const stopBtn = document.getElementById("avatarStop");
+const video = document.getElementById("liveAvatarVideo");
+const status = document.getElementById("avatarStatus");
+let session = null;
+startBtn.addEventListener("click", async () => {
+  startBtn.disabled = true;
+  status.textContent = "AI yordamchi ulanmoqda…";
+  try {
+    const response = await fetch(API + "/api/session", { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" });
+    const data = await response.json();
+    if (!response.ok || !data.session_token) throw new Error(data.error || data.details || "Sessiya tokeni olinmadi");
+    session = new LiveAvatarSession(data.session_token, { voiceChat: {}, autoKeepAlive: true });
+    session.on("session.stream_ready", () => {
+      session.attach(video);
+      video.style.display = "block";
+    });
+    session.on("session.state_changed", state => { status.textContent = "Holat: " + state; });
+    await session.start();
+    stopBtn.disabled = false;
+    status.textContent = "Ulandi. O‘zbek tilida gapirishingiz mumkin.";
+  } catch (error) {
+    status.textContent = "Ulanishda xatolik: " + error.message;
+    startBtn.disabled = false;
+    if (session) { try { await session.stop(); } catch (_) {} session = null; }
+  }
+});
+stopBtn.addEventListener("click", async () => {
+  stopBtn.disabled = true;
+  status.textContent = "Sessiya to‘xtatilmoqda…";
+  try { if (session) await session.stop(); } catch (error) { status.textContent = error.message; }
+  session = null; video.pause(); video.srcObject = null; video.style.display = "none";
+  startBtn.disabled = false; status.textContent = "Sessiya tugadi.";
 });
 </script>
 </body></html>
