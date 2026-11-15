@@ -19,7 +19,7 @@
     .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 20px;border-radius:12px;font-weight:800;border:1px solid transparent;cursor:pointer}
     .primary{background:var(--cyan);color:#082f49}.secondary{border-color:#ffffff70;color:white}.btn:hover{transform:translateY(-1px)}
     .avatar-card{background:#ffffff12;border:1px solid #ffffff30;border-radius:24px;padding:25px;text-align:center;backdrop-filter:blur(8px)}
-    .avatar{display:block;width:min(100%,420px);height:auto;aspect-ratio:1/1;object-fit:contain;object-position:center;margin:0 auto 18px;border-radius:18px;border:1px solid #ffffff55;box-shadow:0 8px 28px #0003}
+    .avatar{width:220px;height:220px;border-radius:50%;margin:0 auto 18px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(145deg,#1e3a8a,#075985);border:5px solid #ffffff55;box-shadow:0 8px 28px #0003}.avatar-photo{width:70.7%;height:70.7%;display:block;object-fit:contain;object-position:center;border-radius:0;max-width:none}
     .avatar-card strong{display:block;font-size:19px}.avatar-card small{color:#bfdbfe}
     section{padding:66px 0}.section-head{text-align:center;margin-bottom:34px}.section-head h2{font-size:clamp(27px,4vw,38px);margin:0 0 8px;color:var(--navy)}.section-head p{color:var(--muted);margin:0}
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.service{background:white;border:1px solid #e5eaf5;border-radius:17px;padding:22px;box-shadow:0 8px 24px #10234a08}
@@ -49,7 +49,7 @@
       <p>Hujjatlar, taqdimotlar, arizalar, kompyuter sozlamalari va boshqa virtual xizmatlar. Vazifangizni yuboring — siz bilan bog‘lanib, narx va muddatni kelishamiz.</p>
       <div class="actions"><a class="btn primary" href="#order">Buyurtma berish</a><a class="btn secondary" href="#services">Xizmatlarni ko‘rish</a></div>
     </div>
-    <div class="avatar-card"><img class="avatar" src="avatar.jpg" alt="Virtual Xizmatlar asoschisi" /><strong>VIRTUAL XIZMATLAR</strong><small>Onlayn yordamchi</small><p style="font-size:13px;color:#dbeafe;margin-bottom:0">O‘zbek tilida murojaat qiling</p></div>
+    <div class="avatar-card"><div class="avatar"><img class="avatar-photo" src="avatar.jpg" alt="Virtual Xizmatlar asoschisi" /></div><strong>VIRTUAL XIZMATLAR</strong><small>Onlayn yordamchi</small><p style="font-size:13px;color:#dbeafe;margin-bottom:0">O‘zbek tilida murojaat qiling</p></div>
   </div></div>
 
   <section id="services"><div class="wrap">
